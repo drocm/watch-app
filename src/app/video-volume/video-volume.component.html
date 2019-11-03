@@ -1,0 +1,7 @@
+<div>
+    <i (click)="unmute()" *ngIf="volume == 0" class="material-icons">volume_off</i>
+    <i (click)="mute()" *ngIf="volume > 0 && volume < 25" class="material-icons">volume_mute</i>
+    <i (click)="mute()" *ngIf="volume >= 25 && volume < 75" class="material-icons">volume_down</i>
+    <i (click)="mute()" *ngIf="volume >= 75" class="material-icons">volume_up</i>
+    <input type="range" min="0" max="100" value="50" [value]="volume" (input)="update($event.target.value)"/>
+</div>

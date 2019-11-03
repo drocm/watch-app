@@ -1,0 +1,6 @@
+<div class="background"></div>
+<button *ngIf="!watch" (click)="watchNow()">Watch Now!</button>
+<section *ngIf="watch">
+    <video-player></video-player>
+    <player-controls></player-controls>
+</section>

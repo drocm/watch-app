@@ -1,0 +1,113 @@
+div{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    width: 34px;
+    height: 39px;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: -10px;
+    -webkit-transition: all .35s ease-out 1s;
+    -moz-transition: all .35s ease-out 1s;
+    -ms-transition: all .35s ease-out 1s;
+    -o-transition: all .5s ease-out 1s;
+    transition: all .35s ease-out 1s;
+}
+
+div:hover{
+    width: 180px;
+    -webkit-transition: all .35s ease-out 0s;
+    -moz-transition: all .35s ease-out 0s;
+    -ms-transition: all .35s ease-out 0s;
+    -o-transition: all .5s ease-out 0s;
+    transition: all .35s ease-out 0s;
+    margin-right: -20px;
+}
+
+i{
+    position: absolute;
+    top: 0; left: 0;
+    font-size: 36px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+input{
+    position: relative;
+    top: 9px; left: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 120px;
+}
+
+
+
+
+
+
+input[type=range] {
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 120px; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+
+    /* Hides the slider so custom styles can be added */
+    background: transparent; 
+    border-color: transparent;
+    color: transparent;
+}
+
+
+
+
+
+
+
+
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border-radius: 10px;
+	background: #ffffff;
+	box-shadow: inset 0 0 0 20px rgba(255,255,255,.25);
+    cursor: pointer;
+	margin-top: 0px;
+    height: 12px;
+    width: 12px;
+	margin-top: -4px;
+	opacity: 1;
+}
+
+input[type=range],
+input[type=range]:hover,
+input[type=range]::-webkit-slider-runnable-track,
+input[type=range]::-webkit-slider-thumb{
+	-webkit-transition: all .05s linear;
+	-moz-transition: all .05s linear;
+	-ms-transition: all .05s linear;
+	-o-transition: all .05s linear;
+	transition: all .05s linear;
+}
+
+
+input[type=range]::-webkit-slider-runnable-track{
+	width: 100%;
+	height: 4px;
+	margin: 2px 0;
+	cursor: pointer;
+	-webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,.1);
+	box-shadow: 0 0 5px 0 rgba(0,0,0,.1), inset 0 0 0 20px rgba(255,255,255,.25);
+}

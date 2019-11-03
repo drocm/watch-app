@@ -1,0 +1,30 @@
+<header>
+    <h1>{{videoTitle}}</h1>
+    <source-select (sourceChange)="changeSource($event)"></source-select>
+</header>
+
+<nav>
+
+    <video-scrubber (seek)="service.seek($event)"></video-scrubber>
+
+    <div class="left">
+
+        <button class="play-pause" (click)="togglePlay('on')" *ngIf="!isPlaying"><i class="material-icons">play_arrow</i></button>
+        <button class="play-pause" (click)="togglePlay('off')" *ngIf="isPlaying"><i class="material-icons">pause</i></button>
+
+        <video-volume (volumeChange)="setVolume($event)"></video-volume>
+
+        <div class="time long" *ngIf="videoLength === 'long'">{{currentVideoTime | date:'H:mm:ss'}}<span>/</span>{{videoDuration | date:'H:mm:ss'}}</div>
+        <div class="time" *ngIf="videoLength === 'medium'">{{currentVideoTime | date:'mm:ss'}}<span>/</span>{{videoDuration | date:'mm:ss'}}</div>
+        <div class="time" *ngIf="videoLength === 'short'">{{currentVideoTime | date:'m:ss'}}<span>/</span>{{videoDuration | date:'m:ss'}}</div>
+
+    </div>
+
+    <div class="right">
+
+        <button class="fullscreen" (click)="toggleFullscreen('on')" *ngIf="!isFullscreen"><i class="material-icons">fullscreen</i></button>
+        <button class="fullscreen" (click)="toggleFullscreen('off')" *ngIf="isFullscreen"><i class="material-icons">fullscreen_exit</i></button>
+
+    </div>
+
+</nav>

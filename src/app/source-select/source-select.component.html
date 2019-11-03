@@ -1,0 +1,21 @@
+<div [class.show]="showInput">
+    <input 
+        [class.show]="showInput"
+        [class.error]="hasError"
+        placeholder="Link must end with '.mp4'"
+        type="text"
+        [value]="value"
+        (input)="input($event.target.value)"
+        (focus)="focus()"
+    />
+    
+    <span *ngIf="!showInput" (click)="show()">
+            <i class="material-icons">open_in_browser</i>
+    </span>
+    <span class="send" *ngIf="showInput && !processing" (click)="update()">
+            <i class="material-icons">send</i>
+    </span>
+    <span class="processing" *ngIf="processing" (click)="update()">
+            <i class="material-icons">autorenew</i>
+    </span>
+</div>
