@@ -24,7 +24,6 @@ export class VideoPlayerComponent implements OnInit {
     this.body = <HTMLBodyElement>document.getElementsByTagName('body')[0];
 
     this.wss.listen('PlayerInit').subscribe((data: any) => {
-      console.log(data);
       this.src = data.src;
       this.player.load();
       if(data.action){

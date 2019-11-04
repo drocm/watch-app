@@ -10,7 +10,17 @@ export class TestViewComponent implements OnInit {
   frame1: HTMLIFrameElement;
   frame2: HTMLIFrameElement;
 
-  constructor() { }
+  src: string;
+
+  constructor() { 
+
+      if(window.location.href.includes('localhost')){
+        this.src = "http://localhost:4200/";
+      } else {
+        this.src = "http://ec2-3-95-234-136.compute-1.amazonaws.com/";
+      }
+
+  }
 
   ngOnInit() {
 

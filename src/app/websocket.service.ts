@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import * as io from 'socket.io-client';
 
 @Injectable({
@@ -10,12 +9,17 @@ export class WebsocketService {
 
   socket;
   ping:number = 0;
+  url: string;
 
   constructor() { 
 
-    const url: string = environment.ws_url + ':' + environment.ws_port;
+    if(window.location.href.includes('localhost')){
+      this.url = "http://localhost:5000/";
+    } else {
+      this.url = "http://ec2-3-95-234-136.compute-1.amazonaws.com:5000/";
+    }
 
-    this.socket = io.connect(url);
+    this.socket = io.connect(this.url);
 
     this.socket.on('probe', (data) => {
       const delay = this.now - data;
