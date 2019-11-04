@@ -7,7 +7,7 @@ const https = require('https');
 let lastAction = {
     action: null,
     src: null,
-    timestamp: null 
+    timestamp: null
 };
 
 io.on('connection', (socket) => {
