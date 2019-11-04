@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class MainComponent {
 
   watch: boolean = false;
+  bgLoaded: boolean = false;
+  imageSrc: string = '/assets/main-bg.jpg';
   overlayTimer = null;
   body: HTMLBodyElement = document.getElementsByTagName('body')[0];
 
@@ -33,6 +35,12 @@ export class MainComponent {
 
   watchNow(){
     this.watch = true;
+  }
+
+  bgOnLoad(){
+    setTimeout(() => {
+      this.bgLoaded = true;
+    }, 100);
   }
 
 }

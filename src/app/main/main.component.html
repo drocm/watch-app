@@ -1,4 +1,5 @@
-<div class="background"></div>
+<img class="bg-load-test" [src]="imageSrc" (load)="bgOnLoad()">
+<div [class.loaded]="bgLoaded" class="background"></div>
 <button *ngIf="!watch" (click)="watchNow()">Watch Now!</button>
 <section *ngIf="watch">
     <video-player></video-player>

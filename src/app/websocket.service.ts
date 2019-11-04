@@ -12,7 +12,10 @@ export class WebsocketService {
   ping:number = 0;
 
   constructor() { 
-    this.socket = io.connect(environment.ws_url);
+
+    const url: string = environment.ws_url + ':' + environment.ws_port;
+
+    this.socket = io.connect(url);
 
     this.socket.on('probe', (data) => {
       const delay = this.now - data;
