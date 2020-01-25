@@ -8,27 +8,35 @@ import { WebsocketService } from './websocket.service';
 export class PlayerControlsService {
 
   localActions: BehaviorSubject<PlayerActions> = new BehaviorSubject<PlayerActions>(null);
-  player: BehaviorSubject<HTMLVideoElement> = new BehaviorSubject<HTMLVideoElement>(null);
-  livePlayer: HTMLVideoElement;
+  player: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  livePlayer: any;
+  playerType: PlayerTypes = PlayerTypes.Youtube;
 
   constructor(
     private wss: WebsocketService
   ) {}
 
-  updatePlayer(player: HTMLVideoElement){
-    this.livePlayer = <HTMLVideoElement>document.getElementById('player');
-    this.player.next(player);
+  updatePlayer(player: any){
+    if(this.playerType === PlayerTypes.Youtube){
+      this.livePlayer = player;
+      this.player.next(player);
+    } else {
+      this.livePlayer = <HTMLVideoElement>document.getElementById('player');
+      this.player.next(player);
+    }
   }
 
-  play(){
-    this.emitPlayerAction(PlayerActions.Play, this.livePlayer.currentTime);
+  play(value = null){
+    const timestamp:number = value || this.livePlayer.currentTime || this.livePlayer.getCurrentTime() || 0;
+    this.emitPlayerAction(PlayerActions.Play, timestamp);
   }
 
-  pause(){
-    this.emitPlayerAction(PlayerActions.Pause, this.livePlayer.currentTime);
+  pause(value = null){
+    const timestamp:number = value || this.livePlayer.currentTime || this.livePlayer.getCurrentTime() || 0;
+    this.emitPlayerAction(PlayerActions.Pause, timestamp);
   }
 
-  seek(value){
+  seek(value = null){
     this.emitPlayerAction(PlayerActions.Seek, value);
   }
 
@@ -44,8 +52,12 @@ export class PlayerControlsService {
     this.emitPlayerAction(PlayerActions.Pause, 0);
   }
 
-  source(url: string){
-    this.wss.emit('ChangeSource', url);
+  source(src: string, player: PlayerTypes = PlayerTypes.Youtube){
+    const data = {
+      player: player,
+      src: src
+    };
+    this.wss.emit('ChangeSource', data);
   }
 
   toDateTime(secs): Date {
@@ -75,4 +87,18 @@ export enum PlayerActions{
   Fullscreen = "fullscreen",
   Shrink = "shrink",
   Volume = "volume"
+}
+
+export enum PlayerTypes{
+  Youtube = "youtube",
+  Video = "video"
+}
+
+export enum PlayerState {
+  Unstarted = -1,
+  Ended = 0,
+  Playing = 1,
+  Paused = 2,
+  Buffering = 3,
+  Cued = 5,
 }

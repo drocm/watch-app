@@ -1,8 +1,9 @@
 <div [class.show]="showInput">
     <input 
+        id="selectSrcInput"
         [class.show]="showInput"
         [class.error]="hasError"
-        placeholder="Link must end with '.mp4'"
+        placeholder="Youtube Video Link"
         type="text"
         [value]="value"
         (input)="input($event.target.value)"

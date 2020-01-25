@@ -8,9 +8,10 @@ import { PlayerControlsService } from '../player-controls.service';
 })
 export class VideoScrubberComponent implements OnInit {
 
-  player: HTMLVideoElement;
+  player: any;
   input: HTMLInputElement;
   currentVideoTime: number;
+  max: number;
 
   private scrubberStyles: HTMLStyleElement;
   private scrubberBGTimer = null;
@@ -28,11 +29,12 @@ export class VideoScrubberComponent implements OnInit {
 
     this.service.player.subscribe((player) => {
       this.player = player ? player : null;
+      this.max = player ? this.player.duration || this.player.getDuration() : null;
     });
 
     setInterval(() => {
-      this.currentVideoTime = this.player ? this.player.currentTime : 0;
-    }, 100);
+      this.currentVideoTime = this.player ? this.player.currentTime || this.player.getCurrentTime() : 0;
+    }, 500);
 
     setInterval(() => {
       if(this.player){
@@ -49,7 +51,8 @@ export class VideoScrubberComponent implements OnInit {
   setScrubberBG(){
 
     const value: number = parseFloat(this.input.value);
-    const percentage: number = (value/this.player.duration) * 100;
+    const duration = this.player ? this.player.duration || this.player.getDuration() : null;
+    const percentage: number = (value/duration) * 100;
     this.scrubberStyles.innerHTML = `
     
       input#video-scrubber[type=range]::-webkit-slider-runnable-track{

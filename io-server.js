@@ -7,7 +7,8 @@ const https = require('https');
 let lastAction = {
     action: null,
     src: null,
-    timestamp: null
+    timestamp: null,
+    player: 'youtube'
 };
 
 io.on('connection', (socket) => {
@@ -15,16 +16,28 @@ io.on('connection', (socket) => {
 
     socket.emit('PlayerInit', lastAction);
 
-    socket.on('PlayerAction', function (action) {
+    socket.on('PlayerAction', function (data) {
         //console.log('PlayerAction', action);
-        lastAction.action = action;
-        lastAction.timestamp = Date.now();
+        const action = {
+            action: data.playerAction,
+            src: lastAction.src,
+            timestamp: parseFloat(data.timestamp),
+            player: lastAction.player
+        };
+        lastAction = action;
         io.emit('PlayerAction', action);
     });
 
-    socket.on('ChangeSource', function (url) {
-        //console.log('ChangeSource', url);
-        io.emit('ChangeSource', url);
+    socket.on('ChangeSource', function (data) {
+        //console.log('ChangeSource', src);
+        const action = {
+            action: 'pause',
+            src: data.src,
+            timestamp: parseFloat(data.timestamp),
+            player: data.player
+        };
+        lastAction = action;
+        io.emit('ChangeSource', action);
     });
 
     socket.on('probe', function (timestamp) {

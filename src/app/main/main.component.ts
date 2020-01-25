@@ -12,6 +12,7 @@ export class MainComponent {
   imageSrc: string = '/assets/main-bg.jpg';
   overlayTimer = null;
   body: HTMLBodyElement = document.getElementsByTagName('body')[0];
+  player: string = "youtube"; 
 
   constructor() {
     this.body.addEventListener('mousemove', () => {

@@ -52,6 +52,8 @@ export class SourceSelectComponent implements OnInit {
   show(){
     this.showInput = true;
 
+    document.getElementById('selectSrcInput').focus();
+
     setTimeout(() => {
       this.reset();
     },12500);
@@ -66,13 +68,13 @@ export class SourceSelectComponent implements OnInit {
       this.value = "Invalid URL";
       this.processing = false;
 
-    }else if(!this.isMp4()){
+    }/*else if(!this.isMp4()){
 
       this.hasError = true;
       this.value = "Must link to mp4";
       this.processing = false;
 
-    } else {
+    }*/ else {
 
       this.wss.emit('testUrl', this.value);
 

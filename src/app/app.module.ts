@@ -10,6 +10,8 @@ import { TestViewComponent } from './test-view/test-view.component';
 import { MainComponent } from './main/main.component';
 import { VideoVolumeComponent } from './video-volume/video-volume.component';
 import { SourceSelectComponent } from './source-select/source-select.component';
+import { YoutubePlayerComponent } from './youtube-player/youtube-player.component';
+import { DebugConsoleComponent } from './debug-console/debug-console.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { SourceSelectComponent } from './source-select/source-select.component';
     TestViewComponent,
     MainComponent,
     VideoVolumeComponent,
-    SourceSelectComponent
+    SourceSelectComponent,
+    YoutubePlayerComponent,
+    DebugConsoleComponent
   ],
   imports: [
     BrowserModule,

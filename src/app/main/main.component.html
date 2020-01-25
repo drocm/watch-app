@@ -1,7 +1,11 @@
-<img class="bg-load-test" [src]="imageSrc" (load)="bgOnLoad()">
-<div [class.loaded]="bgLoaded" class="background"></div>
-<button *ngIf="!watch" (click)="watchNow()">Watch Now!</button>
+<section *ngIf="!watch" >
+    <img class="bg-load-test" [src]="imageSrc" (load)="bgOnLoad()">
+    <div [class.loaded]="bgLoaded" class="background"></div>
+    <button (click)="watchNow()">Watch Now!</button>
+</section>
 <section *ngIf="watch">
-    <video-player></video-player>
+    <video-player *ngIf="player === 'video'"></video-player>
+    <youtube-player *ngIf="player === 'youtube'"></youtube-player>
     <player-controls></player-controls>
+    <debug-console></debug-console>
 </section>

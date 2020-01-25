@@ -1,9 +1,9 @@
 <header>
-    <h1>{{videoTitle}}</h1>
+    <h1 [class.author]="hasYTAuthor">{{videoTitle}}</h1>
     <source-select (sourceChange)="changeSource($event)"></source-select>
 </header>
 
-<nav>
+<nav [class.hidden]="hidden">
 
     <video-scrubber (seek)="service.seek($event)"></video-scrubber>
 

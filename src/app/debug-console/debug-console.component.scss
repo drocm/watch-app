@@ -1,0 +1,32 @@
+i{
+    vertical-align: middle;
+    margin: -3px 5px 0 0;
+
+    &.sent{ color: #2E7D32; }
+    &.received{ color: #B71C1C; }
+    &.src{ color: #FDD835; }
+}
+
+ul{
+    position: fixed;
+    right: -2px;
+    bottom: 45%;
+    width: 250px;
+    background: rgba(0,0,0,.5);
+    border: solid 1px rgba(255,255,255,.5);
+    color: #ffffff;
+    font-size: 14px;
+    padding: 0;
+    list-style: none;
+    opacity: .5;
+    z-index: 9;
+
+    &.parts{
+        display: none;
+    }
+
+    li{
+        padding: 5px 0;
+        vertical-align: middle;
+    }
+}
