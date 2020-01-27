@@ -16,7 +16,7 @@ export class WebsocketService {
     if(window.location.href.includes('localhost')){
       this.url = "http://localhost:5000/";
     } else {
-      this.url = "http://ec2-3-95-234-136.compute-1.amazonaws.com:5000/";
+      this.url = "http://54.164.58.143:5000";
     }
 
     this.socket = io.connect(this.url);
