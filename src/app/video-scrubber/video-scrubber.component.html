@@ -1,0 +1,17 @@
+
+
+<video id="scrubberPreview" [hidden]="!showPreview" [style.left.%]="previewXPosition" width="300" (mousemove) ="clearPreview()"></video>
+
+<input
+    id="video-scrubber"
+    class="video-scrubber"
+    type="range"
+    name="points"
+    step="1"
+    min="0"
+    max="{{player ? player.duration : 0}}"
+    value="{{currentVideoTime}}"
+    (input)="seeked()"
+    (mousemove) ="setPreview($event)"
+    (mouseleave) ="clearPreview()"
+>
