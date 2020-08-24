@@ -16,7 +16,7 @@ export class VideoScrubberComponent implements OnInit {
   input: HTMLInputElement;
   currentVideoTime: number;
   showPreview: boolean = false;
-  previewXPosition: number = 0;
+  previewXPosition: number = 5;
 
   private scrubberStyles: HTMLStyleElement;
   private scrubberBGTimer = null;
@@ -56,7 +56,8 @@ export class VideoScrubberComponent implements OnInit {
     this.previewDebouncer.pipe(debounceTime(16)).subscribe((event) => {
       if (!event) { return }
       this.preview.currentTime = this.calcSliderPos(event);
-      this.previewXPosition = ((event.offsetX / (<HTMLInputElement>event.target).clientWidth) * 100);
+      let mouseXOffset: number = ((event.offsetX / (<HTMLInputElement>event.target).clientWidth) * 100);
+      this.previewXPosition = this.limitPreviewXPosition(mouseXOffset);
     });
 
   }
@@ -99,6 +100,16 @@ export class VideoScrubberComponent implements OnInit {
     this.preview.onseeked = () => {
       this.showPreview = true;
     };
+  }
+
+  private limitPreviewXPosition(position: number): number {
+    if (position < 5) {
+      return 5;
+    } else if (position > 95) {
+      return 95;
+    } else {
+      return position;
+    }
   }
 
   private calcSliderPos(event): number {
